@@ -1,11 +1,23 @@
 import api from "./api";
 
 interface PostType {
-  id: number;
+  boarduuid: number;
+  uuid: number;
+
   title: string;
   body: string;
-  uuid: number;
+  tags: string[];
 }
+
+interface newPostType {
+  uuid: number;
+
+  title: string;
+  body: string;
+  tags: string[];
+}
+
+export type newpost = Omit<PostType, "boarduuid">;
 
 export type GetAllPostsResponse = PostType[];
 
@@ -15,8 +27,8 @@ export const getAllPosts = async () => {
   return response.data;
 };
 
-export const createPost = async (boardUuid: number) => {
-  const response = await api.post<PostType>("/posts", { boardUuid });
+export const createPost = async (newpost: newPostType) => {
+  const response = await api.post<PostType>("/posts", { newpost });
 
   return response.data;
 };

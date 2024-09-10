@@ -30,36 +30,36 @@ const StyledDiv = styled.div`
   justify-content: space-between;
 `;
 
-const StyledCreateLink = styled(Link)`
-  color: #333;
-  font-size: 1rem;
-  font-family: "Roboto", sans-serif;
-  text-decoration: none;
-  padding: 15px 15px 15px 15px;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  background-color: #f7f7f7;
-  transition:
-    color 0.3s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
+// const StyledCreateLink = styled(Link)`
+//   color: #333;
+//   font-size: 1rem;
+//   font-family: "Roboto", sans-serif;
+//   text-decoration: none;
+//   padding: 15px 15px 15px 15px;
+//   border: 2px solid transparent;
+//   border-radius: 8px;
+//   background-color: #f7f7f7;
+//   transition:
+//     color 0.3s ease,
+//     background-color 0.3s ease,
+//     box-shadow 0.3s ease,
+//     transform 0.2s ease;
 
-  &:hover,
-  &:focus {
-    color: #fff;
-    background-color: #007bff;
-    box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.4);
-    transform: translateY(-3px);
-  }
+//   &:hover,
+//   &:focus {
+//     color: #fff;
+//     background-color: #007bff;
+//     box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.4);
+//     transform: translateY(-3px);
+//   }
 
-  &:active {
-    color: #fff;
-    background-color: #0056b3;
-    transform: translateY(0);
-    box-shadow: 0px 2px 10px rgba(0, 86, 179, 0.3);
-  }
-`;
+//   &:active {
+//     color: #fff;
+//     background-color: #0056b3;
+//     transform: translateY(0);
+//     box-shadow: 0px 2px 10px rgba(0, 86, 179, 0.3);
+//   }
+// `;
 
 const StyledLink = styled(Link)`
   color: #333;
@@ -96,11 +96,19 @@ const ListItem = styled.li`
   margin-bottom: 10px;
 `;
 
+// interface Post {
+//   boarduuid: number;
+//   tag: string;
+//   title: string;
+//   body: string;
+//   uuid: number;
+// }
+
 interface Post {
   uuid: number;
-  id: number;
   title: string;
   body: string;
+  tags: string[];
 }
 
 const PostsList = () => {
@@ -131,14 +139,14 @@ const PostsList = () => {
           <ChangeColorBt
             onClick={() => setIsChangeColor(isChangeColor ? false : true)}
           />
-          <StyledCreateLink to={`/createpost`}>게시물 생성</StyledCreateLink>
+          {/* <StyledCreateLink to={`/createpost`}>게시물 생성</StyledCreateLink> */}
         </StyledDiv>
       </HeaderDiv>
 
       <ul>
         {posts.map((post: Post) => (
-          <ListItem key={post.id}>
-            <StyledLink to={`/post/${post.id}`}>{post.title}</StyledLink>
+          <ListItem key={post.uuid}>
+            <StyledLink to={`/post/${post.uuid}`}>{post.title}</StyledLink>
           </ListItem>
         ))}
       </ul>
